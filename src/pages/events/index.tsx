@@ -9,10 +9,13 @@ import { useEffect, useRef, useState } from "react";
 import { AiFillSignal } from "react-icons/ai";
 import { BiSolidHide } from "react-icons/bi";
 import { MdOutlinePublic } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 10;
 
 export function EventsPage() {
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [events, setEvents] = useState<IEvent[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -103,7 +106,9 @@ export function EventsPage() {
           />
         </div>
         <div>
-          <Button type="primary">Create new event</Button>
+          <Button type="primary" onClick={() => navigate("create")}>
+            Create new event
+          </Button>
         </div>
       </div>
       <div className="flex gap-2">
@@ -170,3 +175,6 @@ export function EventsPage() {
     </Space>
   );
 }
+
+export * from "./create";
+export * from "./edit";

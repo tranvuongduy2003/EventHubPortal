@@ -4,11 +4,17 @@ import { IUsersService } from "./contracts";
 import qs from "qs";
 
 class UsersService implements IUsersService {
+  // Queries
   getUsers = (params?: IFilter) => {
     return httpRequest.get<IListData<IUser[]>>("/api/users", {
       params: params,
       paramsSerializer: (params) => qs.stringify(params),
     });
+  };
+
+  // Commands
+  deleteUser = (id: string) => {
+    return httpRequest.delete<IUser>(`/api/users/${id}`);
   };
 }
 

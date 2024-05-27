@@ -4,17 +4,33 @@ import {
   EEventPrivacy,
   EEventStatus,
 } from "@/enums";
-import { ICategory, IEvent, IPriceRange } from "@/interfaces";
+import { ICategory, IEvent, IPriceRange, IResponse } from "@/interfaces";
+import { eventsService } from "@/services";
 import { converter } from "@/utils";
 // eslint-disable-next-line no-redeclare
-import { Image, Rate, Space, Tag } from "antd";
+import { Image, Modal, Rate, Space, Tag, notification } from "antd";
 import { AnyObject } from "antd/es/_util/type";
 import { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
+import { AiFillDelete, AiFillEdit, AiFillWarning } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 // interface EventsTableHookProps {}
 
 export function useEventsTable() {
+  const navigate = useNavigate();
+  const [modal, contextHolder] = Modal.useModal();
+
+  async function handleDeleteEvent(id: string) {
+    try {
+      await eventsService.deleteEvent(id);
+      notification.success({ message: "Delete event succesfully!" });
+    } catch (error: any) {
+      console.log(error);
+      notification.error({ message: (error as IResponse<any>).message });
+    }
+  }
+
   const columns: ColumnsType<IEvent | AnyObject> = [
     {
       title: "Name",
@@ -185,6 +201,40 @@ export function useEventsTable() {
       key: "averageRating",
       render: (averageRating: number) => (
         <Rate allowHalf value={averageRating} />
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "id",
+      key: "id",
+      colSpan: 1,
+      render: (id: string, event) => (
+        <div className="flex items-center gap-4">
+          <div
+            className="p-2 text-xl text-white bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"
+            onClick={() => navigate(`/events/edit/${id}`)}
+          >
+            <AiFillEdit />
+          </div>
+          <div
+            className="p-2 text-xl text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600"
+            onClick={async () =>
+              await modal.warning({
+                title: "Delete Event",
+                content: `Are you sure you want to delete event ${event.name}?`,
+                onOk: () => handleDeleteEvent(id),
+                okButtonProps: { style: { background: "red" } },
+                okText: "Delete",
+                icon: <AiFillWarning className="mx-1 text-2xl text-red-500" />,
+                okCancel: true,
+                closable: true,
+              })
+            }
+          >
+            <AiFillDelete />
+          </div>
+          {contextHolder}
+        </div>
       ),
     },
   ];

@@ -1,13 +1,17 @@
 import { AuthProtectedRoute, HomeLayout } from "@/layouts";
-import { NotFoundPage } from "@/pages/notfound";
-import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage } from "@/pages/auth";
+import {
+  CategoriesPage,
+  CreateCategoryPage,
+  EditCategoryPage,
+} from "@/pages/categories";
 import { DashboardPage } from "@/pages/dashboard";
-import { EventsPage } from "@/pages/events";
-import { CategoriesPage } from "@/pages/categories";
-import { PermissionsPage } from "@/pages/permissions";
-import { UsersPage } from "@/pages/users";
+import { CreateEventPage, EditEventPage, EventsPage } from "@/pages/events";
+import { NotFoundPage } from "@/pages/notfound";
 import { PaymentsPage } from "@/pages/payments";
+import { PermissionsPage } from "@/pages/permissions";
+import { CreateUserPage, EditUserPage, UsersPage } from "@/pages/users";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -22,10 +26,28 @@ function App() {
           {/* Products */}
           <Route path="" element={<Navigate to="/dashboard" />} />
           <Route path="dashboard" element={<DashboardPage />} />
+
+          {/* Events */}
           <Route path="events" element={<EventsPage />} />
+          <Route path="events/create" element={<CreateEventPage />} />
+          <Route path="events/edit/:eventId" element={<EditEventPage />} />
+
+          {/* Categories */}
           <Route path="categories" element={<CategoriesPage />} />
+          <Route path="categories/create" element={<CreateCategoryPage />} />
+          <Route
+            path="categories/edit/:categoryId"
+            element={<EditCategoryPage />}
+          />
+
+          {/* Permissions */}
           <Route path="permissions" element={<PermissionsPage />} />
+
+          {/* Users */}
           <Route path="users" element={<UsersPage />} />
+          <Route path="users/create" element={<CreateUserPage />} />
+          <Route path="users/edit/:userId" element={<EditUserPage />} />
+
           <Route path="payments" element={<PaymentsPage />} />
         </Route>
 

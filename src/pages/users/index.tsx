@@ -5,10 +5,13 @@ import { usersService } from "@/services";
 import { Button, Space, Spin, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 10;
 
 export function UsersPage() {
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [users, setUsers] = useState<IUser[]>([]);
   const [metadata, setMetadata] = useState<IMetadata>();
@@ -59,7 +62,9 @@ export function UsersPage() {
           />
         </div>
         <div>
-          <Button type="primary">Create new user</Button>
+          <Button type="primary" onClick={() => navigate("create")}>
+            Create new user
+          </Button>
         </div>
       </div>
       {isLoading ? (
@@ -79,3 +84,6 @@ export function UsersPage() {
     </Space>
   );
 }
+
+export * from "./create";
+export * from "./edit";

@@ -5,10 +5,13 @@ import { categoriesService } from "@/services";
 import { Button, Space, Spin, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 10;
 
 export function CategoriesPage() {
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [metadata, setMetadata] = useState<IMetadata>();
@@ -59,7 +62,9 @@ export function CategoriesPage() {
           />
         </div>
         <div>
-          <Button type="primary">Create new category</Button>
+          <Button type="primary" onClick={() => navigate("create")}>
+            Create new category
+          </Button>
         </div>
       </div>
       {isLoading ? (
@@ -79,3 +84,6 @@ export function CategoriesPage() {
     </Space>
   );
 }
+
+export * from "./create";
+export * from "./edit";

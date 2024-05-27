@@ -14,7 +14,7 @@ export const UsersTable = ({ users }: UsersTableProps) => {
       columns={columns}
       dataSource={users}
       pagination={false}
-      scroll={{ x: 1300 }}
+      scroll={{ x: 1500 }}
       expandable={{
         expandedRowRender: (user) => <p style={{ margin: 0 }}>{user.bio}</p>,
       }}

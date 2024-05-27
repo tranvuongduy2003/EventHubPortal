@@ -54,7 +54,7 @@ export function Sidebar() {
       <Menu
         theme="dark"
         defaultSelectedKeys={["dashboard"]}
-        selectedKeys={[pathname.slice(1)]}
+        selectedKeys={[pathname.split("/")[1]]}
         mode="inline"
         items={items}
         onClick={(info) => navigate(`/${info.key}`)}
