@@ -1,13 +1,10 @@
 import { CategoriesTable } from "@/components/categories";
-import { StatisticCard, TablePagination } from "@/components/common";
+import { TablePagination } from "@/components/common";
 import { ICategory, IFilter, IMetadata } from "@/interfaces";
 import { categoriesService } from "@/services";
 import { Button, Space, Spin, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import { useEffect, useRef, useState } from "react";
-import { AiFillSignal } from "react-icons/ai";
-import { BiSolidHide } from "react-icons/bi";
-import { MdOutlinePublic } from "react-icons/md";
 
 const PAGE_SIZE = 10;
 

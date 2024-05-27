@@ -1,5 +1,3 @@
-export interface IPaymentsPageProps {}
-
-export function PaymentsPage(props: IPaymentsPageProps) {
+export function PaymentsPage() {
   return <div>PaymentsPage</div>;
 }

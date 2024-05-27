@@ -12,7 +12,7 @@ import { AnyObject } from "antd/es/_util/type";
 import { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
 
-interface EventsTableHookProps {}
+// interface EventsTableHookProps {}
 
 export function useEventsTable() {
   const columns: ColumnsType<IEvent | AnyObject> = [

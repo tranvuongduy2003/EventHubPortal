@@ -5,7 +5,7 @@ import { Image } from "antd";
 import { AnyObject } from "antd/es/_util/type";
 import { ColumnsType } from "antd/es/table";
 
-interface CategoriesTableHookProps {}
+// interface CategoriesTableHookProps {}
 
 export function useCategoriesTable() {
   const columns: ColumnsType<ICategory | AnyObject> = [
