@@ -199,6 +199,7 @@ export function useEventsTable() {
       title: "Rating",
       dataIndex: "averageRating",
       key: "averageRating",
+      width: 200,
       render: (averageRating: number) => (
         <Rate allowHalf value={averageRating} />
       ),
