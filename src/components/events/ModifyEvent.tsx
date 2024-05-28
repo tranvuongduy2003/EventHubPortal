@@ -173,9 +173,11 @@ export function ModifyEvent({ create, event }: IModifyEventProps) {
             className="w-[300px] h-[200px] border-[2px] border-solid border-textGray rounded-lg flex flex-col items-center justify-center gap-2 hover:cursor-pointer"
           >
             <IoCreate size={42} color="var(--header)" />
-            <p className={`font-bold text-textGray`}>{t("option_one.title")}</p>
+            <p className={`font-bold text-textGray`}>
+              {t("create_event.option_one.title")}
+            </p>
             <p className="px-4 text-center text-header">
-              {t("option_one.description")}
+              {t("create_event.option_one.description")}
             </p>
           </button>
           <div className="z-[9] relative w-[300px] h-[200px] border-[2px] border-solid border-textGray rounded-lg flex flex-col items-center justify-center gap-2 hover:cursor-pointer">
@@ -188,17 +190,17 @@ export function ModifyEvent({ create, event }: IModifyEventProps) {
             <div className="absolute z-[0] h-full w-full rounded-lg flex flex-col items-center justify-center gap-2">
               <BiImport size={42} color="var(--header)" />
               <p className="font-bold text-justify text-textGray">
-                {t("option_two.title")}
+                {t("create_event.option_two.title")}
               </p>
               <p className="text-center text-header z-[10]">
-                {t("option_two.description")}
+                {t("create_event.option_two.description")}
               </p>
             </div>
             <button
               onClick={handleDownloadFile}
               className="text-primary hover:underline z-[2] pt-2"
             >
-              {t("option_two.example_file")}
+              {t("create_event.option_two.example_file")}
             </button>
           </div>
         </div>

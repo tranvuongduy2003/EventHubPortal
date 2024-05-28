@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import { AuthProvider } from "@/contexts";
 import "./index.css";
-import { translator } from "@/utils";
+import { translator } from "@/translation";
 import { ConfigProvider } from "antd";
 
 translator.init();
