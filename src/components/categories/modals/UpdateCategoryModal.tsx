@@ -85,10 +85,7 @@ export function UpdateCategoryModal({
       }
       if (iconImage) payloadForm.append("iconImage", iconImage.originFileObj!);
 
-      const { data } = await categoriesService.updateCategory(
-        category.id,
-        payloadForm
-      );
+      await categoriesService.updateCategory(category.id, payloadForm);
 
       notification.success({
         message: "Update category successfully!",

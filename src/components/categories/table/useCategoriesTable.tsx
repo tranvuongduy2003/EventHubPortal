@@ -1,6 +1,5 @@
 import { ICategory, IResponse } from "@/interfaces";
 import { categoriesService } from "@/services";
-import { useCategoriesStore } from "@/stores";
 // eslint-disable-next-line no-redeclare
 import { Image, Modal, notification } from "antd";
 import { AnyObject } from "antd/es/_util/type";

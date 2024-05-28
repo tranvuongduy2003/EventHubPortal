@@ -63,7 +63,7 @@ export function CreateCategoryModal({
       }
       if (iconImage) payloadForm.append("iconImage", iconImage.originFileObj!);
 
-      const { data } = await categoriesService.createCategory(payloadForm);
+      await categoriesService.createCategory(payloadForm);
 
       notification.success({
         message: "Create new category successfully!",

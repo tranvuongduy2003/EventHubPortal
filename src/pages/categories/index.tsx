@@ -2,7 +2,6 @@ import { CategoriesTable, CreateCategoryModal } from "@/components/categories";
 import { TablePagination } from "@/components/common";
 import { ICategory, IFilter, IMetadata } from "@/interfaces";
 import { categoriesService } from "@/services";
-import { useCategoriesStore } from "@/stores";
 import { Button, Space, Spin, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import { useEffect, useRef, useState } from "react";

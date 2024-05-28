@@ -1,13 +1,10 @@
 import { ICategory } from "@/interfaces";
-import { useTranslation } from "react-i18next";
 
 interface ICategoryItemProps {
   category: ICategory;
 }
 
 export function CategoryItem({ category }: ICategoryItemProps) {
-  const { t } = useTranslation();
-
   return (
     <div className="flex flex-row items-center gap-2">
       <div
