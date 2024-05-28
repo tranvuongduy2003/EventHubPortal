@@ -1,10 +1,6 @@
 import { AuthProtectedRoute, HomeLayout } from "@/layouts";
 import { LoginPage } from "@/pages/auth";
-import {
-  CategoriesPage,
-  CreateCategoryPage,
-  EditCategoryPage,
-} from "@/pages/categories";
+import { CategoriesPage } from "@/pages/categories";
 import { DashboardPage } from "@/pages/dashboard";
 import { CreateEventPage, EditEventPage, EventsPage } from "@/pages/events";
 import { NotFoundPage } from "@/pages/notfound";
@@ -14,13 +10,13 @@ import { CreateUserPage, EditUserPage, UsersPage } from "@/pages/users";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useCategoriesStore } from "./stores";
 import { categoriesService } from "./services";
+import { useCategoriesStore } from "./stores";
 
 function App() {
   const { i18n } = useTranslation();
 
-  const { setCategories } = useCategoriesStore((state) => state);
+  const { categories, setCategories } = useCategoriesStore((state) => state);
   const handleFetchCategories = useRef<(() => Promise<void>) | null>(null);
 
   useEffect(() => {
@@ -37,6 +33,7 @@ function App() {
 
   useEffect(() => {
     handleFetchCategories.current = async () => {
+      if (categories && categories.length > 0) return;
       try {
         const { data } = await categoriesService.getCategories();
         const { items } = data;
@@ -71,11 +68,6 @@ function App() {
 
           {/* Categories */}
           <Route path="categories" element={<CategoriesPage />} />
-          <Route path="categories/create" element={<CreateCategoryPage />} />
-          <Route
-            path="categories/edit/:categoryId"
-            element={<EditCategoryPage />}
-          />
 
           {/* Permissions */}
           <Route path="permissions" element={<PermissionsPage />} />

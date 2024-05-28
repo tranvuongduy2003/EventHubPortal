@@ -1,19 +1,18 @@
-import { CategoriesTable } from "@/components/categories";
+import { CategoriesTable, CreateCategoryModal } from "@/components/categories";
 import { TablePagination } from "@/components/common";
 import { ICategory, IFilter, IMetadata } from "@/interfaces";
 import { categoriesService } from "@/services";
+import { useCategoriesStore } from "@/stores";
 import { Button, Space, Spin, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 10;
 
 export function CategoriesPage() {
-  const navigate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [metadata, setMetadata] = useState<IMetadata>();
   const [filter, setFilter] = useState<IFilter>({
     size: PAGE_SIZE,
@@ -43,47 +42,52 @@ export function CategoriesPage() {
   }, [filter]);
 
   return (
-    <Space size="large" direction="vertical" style={{ width: "100%" }}>
-      <Typography.Title level={2}>Categories Management</Typography.Title>
-      <div className="flex justify-between">
-        <div>
-          <Search
-            placeholder="Enter category name"
-            className="w-96"
-            allowClear
-            loading={isLoading}
-            enterButton="Search"
-            onSearch={(value) =>
-              setFilter((curFilter) => ({
-                ...curFilter,
-                search: value,
-              }))
-            }
-          />
+    <>
+      <Space size="large" direction="vertical" style={{ width: "100%" }}>
+        <Typography.Title level={2}>Categories Management</Typography.Title>
+        <div className="flex justify-between">
+          <div>
+            <Search
+              placeholder="Enter category name"
+              className="w-96"
+              allowClear
+              loading={isLoading}
+              enterButton="Search"
+              onSearch={(value) =>
+                setFilter((curFilter) => ({
+                  ...curFilter,
+                  search: value,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <Button type="primary" onClick={() => setIsCreateModalOpen(true)}>
+              Create new category
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button type="primary" onClick={() => navigate("create")}>
-            Create new category
-          </Button>
-        </div>
-      </div>
-      {isLoading ? (
-        <div className="flex items-center justify-center w-full">
-          <Spin spinning={isLoading} size="large" />
-        </div>
-      ) : (
-        <>
-          <CategoriesTable categories={categories ?? []} />
-          <TablePagination
-            filter={filter}
-            metadata={metadata!}
-            setFilter={setFilter}
-          />
-        </>
+        {isLoading ? (
+          <div className="flex items-center justify-center w-full">
+            <Spin spinning={isLoading} size="large" />
+          </div>
+        ) : (
+          <>
+            <CategoriesTable categories={categories ?? []} />
+            <TablePagination
+              filter={filter}
+              metadata={metadata!}
+              setFilter={setFilter}
+            />
+          </>
+        )}
+      </Space>
+      {isCreateModalOpen && (
+        <CreateCategoryModal
+          isModalOpen={isCreateModalOpen}
+          setIsModalOpen={setIsCreateModalOpen}
+        />
       )}
-    </Space>
+    </>
   );
 }
-
-export * from "./create";
-export * from "./edit";

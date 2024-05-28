@@ -16,6 +16,7 @@
     "transfer_content": "Transfer Content",
     "qr_code": "QR Code",
     "image_qrcode": "Upload QR Code",
+    "image_icon": "Upload Icon image",
     "btn_delete": "Delete",
     "btn_cancle": "Cancel",
     "btn_create": "Create",

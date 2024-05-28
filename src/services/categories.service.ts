@@ -13,6 +13,20 @@ class CategoriesService implements ICategoriesService {
   };
 
   // Commands
+  createCategory = (data: FormData) => {
+    return httpRequest.post<FormData, ICategory>("/api/categories", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
+  updateCategory = (id: string, data: FormData) => {
+    return httpRequest.put<FormData, ICategory>(`/api/categories/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
   deleteCategory = (id: string) => {
     return httpRequest.delete<ICategory>(`/api/categories/${id}`);
   };

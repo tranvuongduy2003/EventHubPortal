@@ -7,5 +7,7 @@ export interface ICategoriesService {
   ) => Promise<IResponse<IListData<ICategory[]>>>;
 
   // Commands
+  createCategory: (data: FormData) => Promise<IResponse<ICategory>>;
+  updateCategory: (id: string, data: FormData) => Promise<IResponse<ICategory>>;
   deleteCategory: (id: string) => Promise<IResponse<ICategory>>;
 }

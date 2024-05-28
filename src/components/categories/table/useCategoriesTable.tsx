@@ -1,22 +1,28 @@
 import { ICategory, IResponse } from "@/interfaces";
 import { categoriesService } from "@/services";
+import { useCategoriesStore } from "@/stores";
 // eslint-disable-next-line no-redeclare
 import { Image, Modal, notification } from "antd";
-// eslint-disable-next-line no-redeclare
 import { AnyObject } from "antd/es/_util/type";
 import { ColumnsType } from "antd/es/table";
+import { Dispatch, SetStateAction } from "react";
 import { AiFillDelete, AiFillEdit, AiFillWarning } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 
-// interface CategoriesTableHookProps {}
+interface CategoriesTableHookProps {
+  setIsUpdateModalOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedCategory: Dispatch<SetStateAction<ICategory | undefined>>;
+}
 
-export function useCategoriesTable() {
-  const navigate = useNavigate();
+export function useCategoriesTable({
+  setIsUpdateModalOpen,
+  setSelectedCategory,
+}: CategoriesTableHookProps) {
   const [modal, contextHolder] = Modal.useModal();
 
   async function handleDeleteCategory(id: string) {
     try {
       await categoriesService.deleteCategory(id);
+
       notification.success({ message: "Delete category succesfully!" });
     } catch (error: any) {
       console.log(error);
@@ -78,7 +84,10 @@ export function useCategoriesTable() {
         <div className="flex items-center gap-4">
           <div
             className="p-2 text-xl text-white bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"
-            onClick={() => navigate(`/categories/edit/${id}`)}
+            onClick={() => {
+              setIsUpdateModalOpen(true);
+              setSelectedCategory(category as ICategory);
+            }}
           >
             <AiFillEdit />
           </div>
@@ -94,6 +103,7 @@ export function useCategoriesTable() {
                 icon: <AiFillWarning className="mx-1 text-2xl text-red-500" />,
                 okCancel: true,
                 closable: true,
+                centered: true,
               })
             }
           >
