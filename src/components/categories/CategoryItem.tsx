@@ -20,7 +20,7 @@ export function CategoryItem({ category }: ICategoryItemProps) {
           src={category.iconImage}
         />
       </div>
-      <p className="text-header">{t(`category.${category.name}`)}</p>
+      <p className="text-header">{category.name}</p>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { httpRequest } from "@/interceptors";
-import { ICategory, IFilter } from "@/interfaces";
-import { IListData, IResponse } from "./../interfaces/response.interface";
+import { ICategory, IFilter, IListData } from "@/interfaces";
 import { ICategoriesService } from "./contracts";
 import qs from "qs";
 

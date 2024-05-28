@@ -196,7 +196,7 @@ export function EventInfomation({
                         categorySelect && (
                           <div
                             key={`categories-select-${index}`}
-                            className="relative flex items-center gap-2 p-2 text-white bg-primary-400 rounded-xl"
+                            className="relative flex items-center gap-2 p-2 bg-gray-200 rounded-xl"
                           >
                             <button
                               onClick={() => {

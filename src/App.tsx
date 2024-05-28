@@ -11,12 +11,17 @@ import { NotFoundPage } from "@/pages/notfound";
 import { PaymentsPage } from "@/pages/payments";
 import { PermissionsPage } from "@/pages/permissions";
 import { CreateUserPage, EditUserPage, UsersPage } from "@/pages/users";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useCategoriesStore } from "./stores";
+import { categoriesService } from "./services";
 
 function App() {
   const { i18n } = useTranslation();
+
+  const { setCategories } = useCategoriesStore((state) => state);
+  const handleFetchCategories = useRef<(() => Promise<void>) | null>(null);
 
   useEffect(() => {
     const currentLang = localStorage.getItem("language");
@@ -28,6 +33,22 @@ function App() {
     if (i18n.language !== currentLang) {
       i18n.changeLanguage(currentLang);
     }
+  }, []);
+
+  useEffect(() => {
+    handleFetchCategories.current = async () => {
+      try {
+        const { data } = await categoriesService.getCategories();
+        const { items } = data;
+        setCategories(items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleFetchCategories.current();
+    return () => {
+      handleFetchCategories.current = null;
+    };
   }, []);
 
   return (

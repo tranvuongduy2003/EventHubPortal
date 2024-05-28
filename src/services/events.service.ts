@@ -1,8 +1,7 @@
 import { httpRequest } from "@/interceptors";
-import { IEvent, IEventFilter } from "@/interfaces";
-import qs from "qs";
-import { IListData } from "./../interfaces/response.interface";
+import { IDetailEvent, IEvent, IEventFilter, IListData } from "@/interfaces";
 import { IEventsService } from "./contracts";
+import qs from "qs";
 
 class EventsService implements IEventsService {
   // Queries
@@ -11,6 +10,9 @@ class EventsService implements IEventsService {
       params,
       paramsSerializer: (params) => qs.stringify(params),
     });
+  };
+  getEventById = (id: string) => {
+    return httpRequest.get<IDetailEvent>(`/api/events/${id}`);
   };
 
   // Commands
