@@ -6,15 +6,20 @@ import { useState } from "react";
 
 interface CategoriesTableProps {
   categories: ICategory[];
+  refetch?: (() => Promise<void>) | null;
 }
 
-export const CategoriesTable = ({ categories }: CategoriesTableProps) => {
+export const CategoriesTable = ({
+  categories,
+  refetch,
+}: CategoriesTableProps) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<ICategory>();
 
   const [columns] = useCategoriesTable({
     setIsUpdateModalOpen,
     setSelectedCategory,
+    refetch,
   });
 
   return (
@@ -30,6 +35,7 @@ export const CategoriesTable = ({ categories }: CategoriesTableProps) => {
       />
       {isUpdateModalOpen && selectedCategory && (
         <UpdateCategoryModal
+          refetch={refetch}
           category={selectedCategory}
           isModalOpen={isUpdateModalOpen}
           setIsModalOpen={setIsUpdateModalOpen}

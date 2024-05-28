@@ -22,12 +22,14 @@ export interface IUpdateCategoryModalProps {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   category: ICategory;
+  refetch?: (() => Promise<void>) | null;
 }
 
 export function UpdateCategoryModal({
   isModalOpen,
   setIsModalOpen,
   category,
+  refetch,
 }: IUpdateCategoryModalProps) {
   const { t } = useTranslation();
 
@@ -87,6 +89,8 @@ export function UpdateCategoryModal({
 
       await categoriesService.updateCategory(category.id, payloadForm);
 
+      refetch && refetch();
+
       notification.success({
         message: "Update category successfully!",
       });
@@ -121,7 +125,13 @@ export function UpdateCategoryModal({
           <Form.Item
             name="name"
             label={<span className="font-medium">Name</span>}
-            rules={[{ required: true, message: "Name is required" }]}
+            rules={[
+              { required: true, message: "Name is required" },
+              {
+                max: 100,
+                message: "Name must be less than 100 characters",
+              },
+            ]}
           >
             <Input placeholder="Enter your category name" />
           </Form.Item>
@@ -149,7 +159,6 @@ export function UpdateCategoryModal({
               beforeUpload={beforeUploadFile}
               onChange={onChangeIcon}
               listType="picture-card"
-              className="qrcode-upload"
               multiple={false}
               showUploadList={false}
             >

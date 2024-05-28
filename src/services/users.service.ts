@@ -11,6 +11,9 @@ class UsersService implements IUsersService {
       paramsSerializer: (params) => qs.stringify(params),
     });
   };
+  getUserById = (id: string) => {
+    return httpRequest.get<IUser>(`/api/users/${id}`);
+  };
 
   // Commands
   deleteUser = (id: string) => {

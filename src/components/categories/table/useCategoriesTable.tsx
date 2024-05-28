@@ -10,17 +10,21 @@ import { AiFillDelete, AiFillEdit, AiFillWarning } from "react-icons/ai";
 interface CategoriesTableHookProps {
   setIsUpdateModalOpen: Dispatch<SetStateAction<boolean>>;
   setSelectedCategory: Dispatch<SetStateAction<ICategory | undefined>>;
+  refetch?: (() => Promise<void>) | null;
 }
 
 export function useCategoriesTable({
   setIsUpdateModalOpen,
   setSelectedCategory,
+  refetch,
 }: CategoriesTableHookProps) {
   const [modal, contextHolder] = Modal.useModal();
 
   async function handleDeleteCategory(id: string) {
     try {
       await categoriesService.deleteCategory(id);
+
+      refetch && refetch();
 
       notification.success({ message: "Delete category succesfully!" });
     } catch (error: any) {

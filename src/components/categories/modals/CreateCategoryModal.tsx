@@ -20,11 +20,13 @@ import { AiOutlineUpload } from "react-icons/ai";
 export interface ICreateCategoryModalProps {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  refetch?: (() => Promise<void>) | null;
 }
 
 export function CreateCategoryModal({
   isModalOpen,
   setIsModalOpen,
+  refetch,
 }: ICreateCategoryModalProps) {
   const { t } = useTranslation();
 
@@ -65,6 +67,8 @@ export function CreateCategoryModal({
 
       await categoriesService.createCategory(payloadForm);
 
+      refetch && refetch();
+
       notification.success({
         message: "Create new category successfully!",
       });
@@ -99,7 +103,13 @@ export function CreateCategoryModal({
           <Form.Item
             name="name"
             label={<span className="font-medium">Name</span>}
-            rules={[{ required: true, message: "Name is required" }]}
+            rules={[
+              { required: true, message: "Name is required" },
+              {
+                max: 100,
+                message: "Name must be less than 100 characters",
+              },
+            ]}
           >
             <Input placeholder="Enter your category name" />
           </Form.Item>
@@ -127,7 +137,6 @@ export function CreateCategoryModal({
               beforeUpload={beforeUploadFile}
               onChange={onChangeIcon}
               listType="picture-card"
-              className="qrcode-upload"
               multiple={false}
               showUploadList={false}
             >

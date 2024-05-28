@@ -17,3 +17,9 @@ body {
   min-height: 100vh;
   overflow: hidden;
 }
+
+.avatar-upload > .ant-upload {
+  width: 240px !important;
+  height: 240px !important;
+  overflow: hidden;
+}

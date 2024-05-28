@@ -35,9 +35,6 @@ export function CategoriesPage() {
       }
     };
     handleFetchCategories.current();
-    return () => {
-      handleFetchCategories.current = null;
-    };
   }, [filter]);
 
   return (
@@ -72,7 +69,10 @@ export function CategoriesPage() {
           </div>
         ) : (
           <>
-            <CategoriesTable categories={categories ?? []} />
+            <CategoriesTable
+              categories={categories ?? []}
+              refetch={handleFetchCategories.current}
+            />
             <TablePagination
               filter={filter}
               metadata={metadata!}
@@ -83,6 +83,7 @@ export function CategoriesPage() {
       </Space>
       {isCreateModalOpen && (
         <CreateCategoryModal
+          refetch={handleFetchCategories.current}
           isModalOpen={isCreateModalOpen}
           setIsModalOpen={setIsCreateModalOpen}
         />
