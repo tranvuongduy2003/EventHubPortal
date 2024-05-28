@@ -1,8 +1,8 @@
-import { IListData } from "./../interfaces/response.interface";
 import { httpRequest } from "@/interceptors";
-import { IEventsService } from "./contracts";
 import { IEvent, IEventFilter } from "@/interfaces";
 import qs from "qs";
+import { IListData } from "./../interfaces/response.interface";
+import { IEventsService } from "./contracts";
 
 class EventsService implements IEventsService {
   // Queries
@@ -14,6 +14,20 @@ class EventsService implements IEventsService {
   };
 
   // Commands
+  createEvent = (data: FormData) => {
+    return httpRequest.post<FormData, IEvent>("/api/events", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
+  updateEvent = (id: string, data: FormData) => {
+    return httpRequest.put<FormData, IEvent>(`/api/events/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
   deleteEvent = (id: string) => {
     return httpRequest.delete<IEvent>(`/api/events/${id}`);
   };

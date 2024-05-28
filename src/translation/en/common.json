@@ -1,0 +1,53 @@
+{
+  "not_data": {
+    "text": "Sorry, data is not available or data has not been updated"
+  },
+  "signin_btn": "Sign In",
+  "notification": {
+    "title": "Notifications",
+    "all": "All",
+    "follow": "Following",
+    "order": "Orders",
+    "follow_text": "follow you",
+    "order_text": "order your event",
+    "hours ago": "hours ago",
+    "accept_btn": "Accept",
+    "decline_btn": "Decline"
+  },
+  "message": {
+    "title": "Messages",
+    "all": "All",
+    "latest": "Latest",
+    "archived": "Archived",
+    "reply_btn": "Reply",
+    "mark_btn": "Mark as read"
+  },
+  "category": {
+    "label": "Category",
+    "Visual Arts": "Visual Arts",
+    "Sports & Active Life": "Sports & Active Life",
+    "Politics": "Politics",
+    "Performing Arts": "Performing Arts",
+    "Other": "Other",
+    "Nightlife": "Nightlife",
+    "Music": "Music",
+    "Lectures & Books": "Lectures & Books",
+    "Kids & Family": "Kids & Family",
+    "Holidays": "Holidays",
+    "Food & Drink": "Food & Drink",
+    "Film": "Film",
+    "Festivals & Fairs": "Festivals & Fairs",
+    "Fashion": "Fashion",
+    "Concerts": "Concerts",
+    "Conferences": "Conferences",
+    "Community": "Community",
+    "Charities": "Charities",
+    "Anniversary": "Anniversary",
+    "Academic": "Academic"
+  },
+  "filter": {
+    "ALL": "All",
+    "PUBLIC": "Public",
+    "PRIVATE": "Private"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "header": {
+    "search": "Search..."
+  },
+  "search home": {
+    "title": "The right desitination for you and your friends",
+    "sub_title": "Participating in many events will help you better discover your personality",
+    "explore": "Explore Now",
+    "event": "Event",
+    "event_placeholder": "Enter you name event",
+    "status": "Status",
+    "category": "Category",
+    "search": "Search",
+    "events_to_explore": "Events to Explore",
+    "view_event_btn": "View",
+    "All": "All",
+    "Upcoming": "Upcoming",
+    "Openning": "Openning",
+    "Closed": "Closed",
+    "categories": {
+      "Visual Arts": "Visual Arts",
+      "Sports & Active Life": "Sports & Active Life",
+      "Politics": "Politics",
+      "Performing Arts": "Performing Arts",
+      "Other": "Other",
+      "Nightlife": "Nightlife",
+      "Music": "Music",
+      "Lectures & Books": "Lectures & Books",
+      "Kids & Family": "Kids & Family",
+      "Holidays": "Holidays",
+      "Food & Drink": "Food & Drink",
+      "Film": "Film",
+      "Festivals & Fairs": "Festivals & Fairs",
+      "Fashion": "Fashion",
+      "Concerts": "Concerts",
+      "Conferences": "Conferences",
+      "Community": "Community",
+      "Charities": "Charities",
+      "Anniversary": "Anniversary",
+      "Academic": "Academic"
+    }
+  },
+  "best events": {
+    "title": "Best Events to Visit"
+  },
+  "upcomming events": {
+    "title": "Upcomming Events"
+  },
+  "about us": {
+    "title": "About us"
+  }
+}

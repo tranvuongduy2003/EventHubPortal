@@ -11,9 +11,25 @@ import { NotFoundPage } from "@/pages/notfound";
 import { PaymentsPage } from "@/pages/payments";
 import { PermissionsPage } from "@/pages/permissions";
 import { CreateUserPage, EditUserPage, UsersPage } from "@/pages/users";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const currentLang = localStorage.getItem("language");
+    if (!currentLang) {
+      localStorage.setItem("language", i18n.language);
+      return;
+    }
+
+    if (i18n.language !== currentLang) {
+      i18n.changeLanguage(currentLang);
+    }
+  }, []);
+
   return (
     <Routes>
       <Route>

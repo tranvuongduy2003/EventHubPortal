@@ -6,3 +6,5 @@ export * from "./function.interface";
 export * from "./event.interface";
 export * from "./category.interface";
 export * from "./common.interface";
+export * from "./ticket.interface";
+export * from "./file.interface";

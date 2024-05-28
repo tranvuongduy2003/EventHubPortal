@@ -1,0 +1,52 @@
+{
+  "header": {
+    "search": "Tìm kiếm..."
+  },
+  "search home": {
+    "title": "Điểm đến đúng đắn cho bạn và bạn bè",
+    "sub_title": "Tham gia nhiều sự kiện sẽ giúp bạn khám phá rõ hơn tính cánh bản thân",
+    "explore": "Khám phá ngay",
+    "event": "Sự kiện",
+    "event_placeholder": "Nhập tên sự kiện",
+    "status": "Trạng thái",
+    "category": "Thể loại",
+    "search": "Tìm kiếm",
+    "events_to_explore": "Khám phá sự kiện",
+    "view_event_btn": "Xem",
+    "All": "Tất cả",
+    "Upcoming": "Sắp diễn ra",
+    "Openning": "Đang diễn ra",
+    "Closed": "Đã kết thúc",
+    "categories": {
+      "Visual Arts": "Nghệ thuật",
+      "Sports & Active Life": "Thể thao cuộc sống",
+      "Politics": "Chính trị",
+      "Performing Arts": "Thể hiện nghệ thuật",
+      "Other": "Khác",
+      "Nightlife": "Cuộc sống về đêm",
+      "Music": "Âm nhạc",
+      "Lectures & Books": "Bài giảng và sách",
+      "Kids & Family": "Gia đình",
+      "Holidays": "Kỳ nghĩ",
+      "Food & Drink": "Âm thực",
+      "Film": "Phim",
+      "Festivals & Fairs": "Lễ hội",
+      "Fashion": "Thời trang",
+      "Concerts": "Hòa nhạc",
+      "Conferences": "Hội nghị",
+      "Community": "Cộng đồng",
+      "Charities": "Từ thiện",
+      "Anniversary": "Kỉ niệm",
+      "Academic": "Học vấn"
+    }
+  },
+  "best events": {
+    "title": "Lựa chọn tốt nhất cho bạn"
+  },
+  "upcomming events": {
+    "title": "Sự kiện sắp diễn ra"
+  },
+  "about us": {
+    "title": "Về chúng tôi"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "header": {
+    "title": "Billing"
+  },
+  "table": {
+    "invoice": "Invoice",
+    "code": "CODE",
+    "vat": "VAT",
+    "total": "TOTAL"
+  },
+  "btn_add": "Add new pyament account",
+  "modal": {
+    "title": "Update payment account",
+    "payment_method": "Payment Method",
+    "account_number": "Account Number",
+    "transfer_content": "Transfer Content",
+    "qr_code": "QR Code",
+    "image_qrcode": "Upload QR Code",
+    "btn_delete": "Delete",
+    "btn_cancle": "Cancel",
+    "btn_create": "Create",
+    "btn_update": "Update"
+  }
+}
