@@ -1,6 +1,4 @@
-import { EEventStatus } from "@/enums";
 import {
-  IEvent,
   IPayment,
   IPaymentEvent,
   IResponse,
@@ -9,7 +7,7 @@ import {
 import { paymentsService } from "@/services";
 import { converter } from "@/utils";
 // eslint-disable-next-line no-redeclare
-import { Image, Modal, Space, Tag, notification } from "antd";
+import { Image, Modal, Space, notification } from "antd";
 import { AnyObject } from "antd/es/_util/type";
 import { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
@@ -32,6 +30,8 @@ export function usePaymentsTable({
   async function handleDeletePayment(id: string) {
     try {
       await paymentsService.deletePayment(id);
+
+      refetch && refetch();
 
       notification.success({ message: "Delete payment succesfully!" });
     } catch (error: any) {
