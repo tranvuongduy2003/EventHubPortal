@@ -8,3 +8,4 @@ export * from "./category.interface";
 export * from "./common.interface";
 export * from "./ticket.interface";
 export * from "./file.interface";
+export * from "./payment.interface";

@@ -1,6 +1,7 @@
+import { IResponse } from "@/interfaces";
 import { authService } from "@/services";
-import { IResponse, LoginPayload } from "@/interfaces";
 import { useAppStore, useAuthStore } from "@/stores";
+import { LoginPayload } from "@/types";
 import { notification } from "antd";
 import React, { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
@@ -48,6 +49,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
 
   const logOut = () => {
+    authService.logout();
     setToken("");
     setProfile(null);
     setLoggedIn(false);

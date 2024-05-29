@@ -1,8 +1,3 @@
-export interface LoginPayload {
-  identity: string;
-  password: string;
-}
-
-export interface TokenPayload {
+export interface IToken {
   accessToken: string;
 }

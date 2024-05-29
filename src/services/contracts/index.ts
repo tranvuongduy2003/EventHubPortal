@@ -4,3 +4,4 @@ export * from "./permissions.contract";
 export * from "./functions.contract";
 export * from "./events.contract";
 export * from "./categories.contract";
+export * from "./payments.contract";

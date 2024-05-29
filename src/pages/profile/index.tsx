@@ -1,7 +1,7 @@
 import { EGender } from "@/enums";
-import { IUser } from "@/interfaces";
 import { usersService } from "@/services";
-import { UpdateUserPayload } from "@/types";
+import { useAuthStore } from "@/stores";
+import { CreateUserPayload } from "@/types";
 import { fileExtensions } from "@/utils";
 import {
   Button,
@@ -20,56 +20,47 @@ import Upload, { RcFile, UploadChangeParam } from "antd/es/upload";
 import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineUpload } from "react-icons/ai";
-import { useParams } from "react-router-dom";
 
-export function EditUserPage() {
-  const { userId } = useParams();
+export function ProfilePage() {
+  const { profile, setProfile } = useAuthStore((state) => state);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isFetchLoading, setIsFetchLoading] = useState<boolean>(false);
 
-  const [form] = Form.useForm<UpdateUserPayload>();
+  const [form] = Form.useForm<CreateUserPayload>();
   const avatar = Form.useWatch("avatar", form);
 
-  const handleFetchUser = useRef<(() => Promise<void>) | null>(null);
-  const handleInitUpdateUserForm = useRef<
-    ((user: IUser) => Promise<void>) | null
-  >(null);
+  const handleInitUpdateUserForm = useRef<(() => Promise<void>) | null>(null);
 
   useEffect(() => {
-    handleInitUpdateUserForm.current = async (user: IUser) => {
-      const avatar = user.avatar
-        ? await fileExtensions.urlToUploadFile(user.avatar)
-        : null;
-      form.setFieldsValue({
-        avatar: avatar,
-        bio: user.bio,
-        dob: user.dob ? dayjs(user.dob) : dayjs(),
-        email: user.email,
-        fullName: user.fullName,
-        gender: user.gender,
-        phoneNumber: user.phoneNumber,
-        userName: user.userName,
-      });
-    };
-
-    handleFetchUser.current = async () => {
+    handleInitUpdateUserForm.current = async () => {
       setIsFetchLoading(true);
       try {
-        const { data } = await usersService.getUserById(userId!);
-        await handleInitUpdateUserForm.current!(data);
+        if (!profile) return;
+        const avatar = profile.avatar
+          ? await fileExtensions.urlToUploadFile(profile.avatar)
+          : null;
+        form.setFieldsValue({
+          avatar: avatar,
+          bio: profile.bio,
+          dob: profile.dob ? dayjs(profile.dob) : dayjs(),
+          email: profile.email,
+          fullName: profile.fullName,
+          gender: profile.gender,
+          phoneNumber: profile.phoneNumber,
+          userName: profile.userName,
+        });
         setIsFetchLoading(false);
       } catch (error) {
         console.log(error);
         setIsFetchLoading(false);
       }
     };
-    handleFetchUser.current();
+    handleInitUpdateUserForm.current();
     return () => {
-      handleFetchUser.current = null;
       handleInitUpdateUserForm.current = null;
     };
-  }, [userId, form]);
+  }, [profile, form]);
 
   async function onChangeAvatar(param: UploadChangeParam) {
     const { file } = param;
@@ -94,6 +85,7 @@ export function EditUserPage() {
         phoneNumber,
         dob,
         fullName,
+        password,
         userName,
         gender,
         bio,
@@ -106,6 +98,7 @@ export function EditUserPage() {
         email,
         phoneNumber,
         fullName,
+        password,
         userName,
         gender,
         bio,
@@ -115,7 +108,8 @@ export function EditUserPage() {
       if (dob) payloadForm.append("dob", dob.format("YYYY-MM-DD"));
       if (avatar) payloadForm.append("avatar", avatar.originFileObj!);
 
-      await usersService.updateUser(userId!, payloadForm);
+      var { data } = await usersService.updateUser(profile!.id, payloadForm);
+      setProfile(data);
 
       notification.success({
         message: "Update new user successfully!",

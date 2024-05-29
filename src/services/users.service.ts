@@ -1,7 +1,7 @@
-import { IFilter, IListData, IUser } from "@/interfaces";
 import { httpRequest } from "@/interceptors";
-import { IUsersService } from "./contracts";
+import { IFilter, IListData, IUser } from "@/interfaces";
 import qs from "qs";
+import { IUsersService } from "./contracts";
 
 class UsersService implements IUsersService {
   // Queries
@@ -16,6 +16,20 @@ class UsersService implements IUsersService {
   };
 
   // Commands
+  createUser = (data: FormData) => {
+    return httpRequest.post<FormData, IUser>(`/api/users`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
+  updateUser = (id: string, data: FormData) => {
+    return httpRequest.put<FormData, IUser>(`/api/users/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
   deleteUser = (id: string) => {
     return httpRequest.delete<IUser>(`/api/users/${id}`);
   };

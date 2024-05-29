@@ -1,6 +1,6 @@
 import { AuthContext } from "@/contexts";
-import { LoginPayload } from "@/interfaces";
 import { useAppStore } from "@/stores";
+import { LoginPayload } from "@/types";
 // eslint-disable-next-line no-redeclare
 import { Button, Form, Image, Input } from "antd";
 import { useForm } from "antd/es/form/Form";

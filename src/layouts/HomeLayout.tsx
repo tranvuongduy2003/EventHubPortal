@@ -3,7 +3,7 @@ import { Layout, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { Sidebar } from "./Sidebar";
+import { Sidebar, LayoutHeader } from ".";
 
 export const HomeLayout: React.FunctionComponent = () => {
   const {
@@ -16,12 +16,13 @@ export const HomeLayout: React.FunctionComponent = () => {
     <Navigate to="/auth/login" replace />
   ) : (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar />
+      <LayoutHeader />
       <Layout
         style={{
           background: colorBgContainer,
         }}
       >
+        <Sidebar />
         <Content style={{ margin: 24 }}>
           <Outlet />
         </Content>

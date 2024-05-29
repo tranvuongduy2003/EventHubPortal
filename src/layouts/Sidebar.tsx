@@ -1,12 +1,11 @@
 import { Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Key, ReactNode, useState } from "react";
+import { FaUsers } from "react-icons/fa";
 import {
   MdCategory,
-  MdDashboard,
   MdEventAvailable,
   MdPayments,
-  MdPerson,
   MdPrivacyTip,
 } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -32,10 +31,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Dashboard", "dashboard", <MdDashboard />),
+  // getItem("Dashboard", "dashboard", <MdDashboard />),
   getItem("Events", "events", <MdEventAvailable />),
   getItem("Categories", "categories", <MdCategory />),
-  getItem("Users", "users", <MdPerson />),
+  getItem("Users", "users", <FaUsers />),
   getItem("Permissions", "permissions", <MdPrivacyTip />),
   getItem("Payments", "payments", <MdPayments />),
 ];

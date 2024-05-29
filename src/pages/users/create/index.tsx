@@ -1,5 +1,6 @@
 import { PASSWORD_REGEX } from "@/constants";
 import { EGender } from "@/enums";
+import { usersService } from "@/services";
 import { CreateUserPayload } from "@/types";
 import { fileExtensions } from "@/utils";
 import {
@@ -71,6 +72,8 @@ export function CreateUserPage() {
       }
       if (dob) payloadForm.append("dob", dob.format("YYYY-MM-DD"));
       if (avatar) payloadForm.append("avatar", avatar.originFileObj!);
+
+      await usersService.createUser(payloadForm);
 
       notification.success({
         message: "Create new user successfully!",

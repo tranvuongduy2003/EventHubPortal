@@ -15,11 +15,3 @@ export enum EEventPrivacy {
   PUBLIC = "PUBLIC",
   PRIVATE = "PRIVATE",
 }
-
-export enum EPaymentStatus {
-  PAID = "PAID",
-  PENDING = "PENDING",
-  FAILED = "FAILED",
-  REJECTED = "REJECTED",
-  ALL = "ALL",
-}

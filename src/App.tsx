@@ -6,12 +6,13 @@ import { CreateEventPage, EditEventPage, EventsPage } from "@/pages/events";
 import { NotFoundPage } from "@/pages/notfound";
 import { PaymentsPage } from "@/pages/payments";
 import { PermissionsPage } from "@/pages/permissions";
+import { ProfilePage } from "@/pages/profile";
 import { CreateUserPage, EditUserPage, UsersPage } from "@/pages/users";
+import { categoriesService } from "@/services";
+import { useCategoriesStore } from "@/stores";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { categoriesService } from "./services";
-import { useCategoriesStore } from "./stores";
 
 function App() {
   const { i18n } = useTranslation();
@@ -58,7 +59,7 @@ function App() {
 
         <Route element={<HomeLayout />}>
           {/* Products */}
-          <Route path="" element={<Navigate to="/dashboard" />} />
+          <Route path="" element={<Navigate to="/events" />} />
           <Route path="dashboard" element={<DashboardPage />} />
 
           {/* Events */}
@@ -78,6 +79,8 @@ function App() {
           <Route path="users/edit/:userId" element={<EditUserPage />} />
 
           <Route path="payments" element={<PaymentsPage />} />
+
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

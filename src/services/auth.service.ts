@@ -1,13 +1,14 @@
 import { httpRequest } from "@/interceptors";
-import { LoginPayload, TokenPayload, IUser } from "@/interfaces";
+import { IToken, IUser } from "@/interfaces";
 import { IAuthService } from "./contracts";
+import { LoginPayload } from "@/types";
 
 class AuthService implements IAuthService {
   login = (data: LoginPayload) => {
-    return httpRequest.post<LoginPayload, TokenPayload>(
-      "/api/auth/signin",
-      data
-    );
+    return httpRequest.post<LoginPayload, IToken>("/api/auth/signin", data);
+  };
+  logout = () => {
+    return httpRequest.post<any, any>("/api/auth/signout", {});
   };
 
   getProfile = () => {

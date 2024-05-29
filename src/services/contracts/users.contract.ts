@@ -7,5 +7,7 @@ export interface IUsersService {
   getUserById: (id: string) => Promise<IResponse<IUser>>;
 
   // Commands
+  createUser: (data: FormData) => Promise<IResponse<IUser>>;
+  updateUser: (id: string, data: FormData) => Promise<IResponse<IUser>>;
   deleteUser: (id: string) => Promise<IResponse<IUser>>;
 }
